@@ -1,19 +1,19 @@
 import express from 'express'
 import proyectosController from '../controllers/proyectos.controllers.js'
 
-const route = express()
+const routeProyectos = express()
 
-route.get('/proyectos', proyectosController.todosLosProyectos)
+routeProyectos.get('/', proyectosController.todosLosProyectos)
 
-route.get('/proyecto/:id', proyectosController.proyectoPorId)
+routeProyectos.get('/:id', proyectosController.proyectoPorId)
 
-route.get('/proyectos/:seccion', proyectosController.proyectosPorSeccion)
+routeProyectos.get('/seccion/:seccion', proyectosController.proyectosPorSeccion)
 
-route.post('/proyectos', proyectosController.crearProyecto)
+routeProyectos.post('/', proyectosController.crearProyecto)
 
-route.delete('/proyectos/:id', proyectosController.eliminarProyecto)
+routeProyectos.delete('/:id', proyectosController.eliminarProyecto)
 
-route.put('/proyectos/:id', proyectosController.editarProyecto)
+routeProyectos.put('/:id', proyectosController.editarProyecto)
 
 
-export default route
+export default routeProyectos
