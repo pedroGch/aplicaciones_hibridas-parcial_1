@@ -5,7 +5,7 @@ const route = express()
 
 route.get('/proyectos', proyectosController.todosLosProyectos)
 
-route.get('/proyectos/:id', proyectosController.proyectosPorId)
+route.get('/proyecto/:id', proyectosController.proyectoPorId)
 
 route.get('/proyectos/:seccion', proyectosController.proyectosPorSeccion)
 
