@@ -33,12 +33,14 @@ async function crearProyecto(data) {
   return nuevoProyecto
 }
 
-function eliminarProyecto(id) {
-  return true;
+async function eliminarProyecto(id) {
+  await cliente.connect()
+  return await ProyectosCollection.deleteOne({_id: new ObjectId(id)})
 }
 
-function editarProyecto(id) {
-  return true;
+async function editarProyecto(id, data) {
+  await cliente.connect()
+  return await ProyectosCollection.updateOne({_id: new ObjectId(id)}, {$set: {...data}})
 }
 
 export default{

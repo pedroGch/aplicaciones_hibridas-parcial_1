@@ -75,11 +75,32 @@ async function crearProyecto(req, res) {
 }
 
 function eliminarProyecto(req, res) {
-  return res.status(200).send('te doy todos los proyectos')
+  proyectosServices.eliminarProyecto(req.params.id)
+  .then( (proyecto) => {
+    if (proyecto) {
+      res.status(200).json(proyecto)
+    }else{
+      res.status(404).send('recurso no encontrado')
+    }
+  })
+  .catch((error) => {
+    res.status(500).send('error: ' + error)
+  })
+
 }
 
 function editarProyecto(req, res) {
-  return res.status(200).send('te doy todos los proyectos')
+  proyectosServices.editarProyecto(req.params.id, req.body)
+  .then( (proyecto) => {
+    if (proyecto) {
+      res.status(200).json(proyecto)
+    }else{
+      res.status(404).send('recurso no encontrado')
+    }
+  })
+  .catch((error) => {
+    res.status(500).send('error: ' + error)
+  })
 }
 
 export default{
