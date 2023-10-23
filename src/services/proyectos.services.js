@@ -5,6 +5,16 @@ const db = cliente.db("AH20231CP1")
 const ProyectosCollection = db.collection('Projects')
 
 
+async function filtrarPorTecnologia(tecnologia) {
+  await cliente.connect()
+  return ProyectosCollection.find({technologies: {$in: [tecnologia] }}).toArray()
+}
+
+async function filtrarPorSeccion(seccion) {
+  await cliente.connect()
+  return ProyectosCollection.find({section: seccion}).toArray()
+}
+
 async function todosLosProyectos() {
   await cliente.connect()
   const proyectos = ProyectosCollection.find().toArray()
@@ -36,5 +46,7 @@ export default{
   proyectoPorId,
   crearProyecto,
   eliminarProyecto,
-  editarProyecto
+  editarProyecto,
+  filtrarPorTecnologia,
+  filtrarPorSeccion
 }

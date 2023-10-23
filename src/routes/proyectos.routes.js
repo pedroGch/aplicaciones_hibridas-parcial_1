@@ -9,6 +9,8 @@ routeProyectos.get('/:id', proyectosController.proyectoPorId)
 
 routeProyectos.get('/seccion/:seccion', proyectosController.proyectosPorSeccion)
 
+routeProyectos.get('/tecnologia/:tecnologia', proyectosController.proyectosPorTecnologia)
+
 routeProyectos.post('/', proyectosController.crearProyecto)
 
 routeProyectos.delete('/:id', proyectosController.eliminarProyecto)

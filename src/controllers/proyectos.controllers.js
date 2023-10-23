@@ -26,7 +26,31 @@ function proyectoPorId(req, res) {
 }
 
 function proyectosPorSeccion(req, res) {
-  return res.status(200).send('te doy todos los proyectos')
+  proyectosServices.filtrarPorSeccion(req.params.seccion)
+  .then( (proyecto) => {
+    if (proyecto) {
+      res.status(200).json(proyecto)
+    }else{
+      res.status(404).send('seccion no encontrada')
+    }
+  })
+  .catch((error) => {
+    res.status(500).send('error: ' + error)
+  })
+}
+
+function proyectosPorTecnologia(req, res) {
+  proyectosServices.filtrarPorTecnologia(req.params.tecnologia)
+  .then( (proyecto) => {
+    if (proyecto) {
+      res.status(200).json(proyecto)
+    }else{
+      res.status(404).send('tecnologia no encontrada')
+    }
+  })
+  .catch((error) => {
+    res.status(500).send('error: ' + error)
+  })
 }
 
 async function crearProyecto(req, res) {
@@ -64,5 +88,6 @@ export default{
   proyectoPorId,
   crearProyecto,
   eliminarProyecto,
-  editarProyecto
+  editarProyecto,
+  proyectosPorTecnologia
 }
