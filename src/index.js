@@ -1,12 +1,12 @@
 import express from 'express'
-import proyectosRoutes from './routes/proyectos.routes.js'
+import { routerApi } from './routes/index.routes.js'
 
 const app = express()
 const port = 2222
 
 app.use(express.json())
 
-app.use(proyectosRoutes)
+routerApi(app)
 
 app.listen(port, () => {
   console.log(`estas conectado al puerto: ${port}`)
