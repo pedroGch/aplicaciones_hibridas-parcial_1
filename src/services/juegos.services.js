@@ -18,7 +18,28 @@ async function obtenerPorEdidicion (edicion){
   }
 }
 
+async function crearJuego(data) {
+  await cliente.connect()
+  const nuevoJuego = {"_id": new ObjectId() , ...data}
+  await juegosCollection.insertOne(nuevoJuego)
+  return nuevoJuego
+}
+
+async function editarJuego(data) {
+  await cliente.connect()
+  return await juegosCollection.updateOne({_id: new ObjectId(id)}, {$set: {...data}})
+}
+
+async function borrarJuego(id) {
+  await cliente.connect()
+  return await juegosCollection.deleteOne({_id: new ObjectId(id)})
+}
+
+
 export default{
   juegosPorId,
-  obtenerPorEdidicion
+  obtenerPorEdidicion,
+  crearJuego,
+  editarJuego,
+  borrarJuego
 }
