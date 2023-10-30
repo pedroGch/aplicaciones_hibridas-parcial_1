@@ -3,7 +3,7 @@ import votosServices from "./votos.services.js"
 
 const cliente = new MongoClient('mongodb://127.0.0.1:27017')
 const db = cliente.db("AH_PARCIAL1")
-const juegosCollection = db.collection("judges")
+const juecesCollection = db.collection("judges")
 
 
 async function juegosVotados(id) {

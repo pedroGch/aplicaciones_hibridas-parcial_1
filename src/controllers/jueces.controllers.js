@@ -3,7 +3,16 @@ import juecesServices from "../services/jueces.services.js"
 async function juegosVotados(req, res) {
   juecesServices.juegosVotados(req.params.id)
   .then(function (resultado){
-    res.status(200).json(resultado)
+    const response = resultado.map( r =>{
+      return {
+        "nombre_juego" : r.nombre_juego,
+        "jugabilidad"  : r.jugabilidad,
+        "arte"         : r.arte,
+        "sonido"       : r.sonido,
+        "afinidad"     : r.afinidad
+      }
+    })
+    res.status(200).json(response)
   })
   .catch( error => {
     res.status(500).send('error del sevidor')
@@ -12,12 +21,14 @@ async function juegosVotados(req, res) {
 
 function emitirVoto(req, res) {
   const data = {
-    "juez_id"    : req.body.juez_id,
-    "juego_id"   : req.body.juego_id,
-    "jugabilidad": req.body.jugabilidad,
-    "arte"       : req.body.arte,
-    "sonido"     : req.body.sonido,
-    "afinidad"   : req.body.afinidad
+    "juez_id"     : req.body.juez_id,
+    "nombre_juez" : req.body.nombre_juez,
+    "juego_id"    : req.body.juego_id,
+    "nombre_juego": req.body.nombre_juego,
+    "jugabilidad" : req.body.jugabilidad,
+    "arte"        : req.body.arte,
+    "sonido"      : req.body.sonido,
+    "afinidad"    : req.body.afinidad
   }
   juecesServices.emitirVoto(data)
   .then(function (votoEmitido) {
