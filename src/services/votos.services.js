@@ -10,10 +10,9 @@ const votesCollection = db.collection("votes")
  * @returns []
  */
 async function juegosVotados(id) {
-  return {
-    '_id': new ObjectId(),
-    'nombre': 'Final Fantasy 9'
-  }
+  await cliente.connect()
+  const lista = await votesCollection.find({"juez_id": id}).toArray()
+  return lista
 }
 
 /**

@@ -1,9 +1,9 @@
 import juecesServices from "../services/jueces.services.js"
 
-function juegosVotados(req, res) {
+async function juegosVotados(req, res) {
   juecesServices.juegosVotados(req.params.id)
-  .then(function (listaDeJuegos) {
-    res.status(200).json(listaDeJuegos)
+  .then(function (resultado){
+    res.status(200).json(resultado)
   })
   .catch( error => {
     res.status(500).send('error del sevidor')
