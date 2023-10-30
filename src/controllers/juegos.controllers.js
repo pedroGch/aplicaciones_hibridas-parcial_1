@@ -1,10 +1,19 @@
 import juegosServices from "../services/juegos.services.js"
 
 
-function jucesQueVotaronA(req, res) {
-  juegosServices.jucesQueVotaronA(req.params.id)
-  .then(function (listaDeJueces) {
-    res.status(200).json(listaDeJueces)
+async function juegosPorId(req, res) {
+  juegosServices.juegosPorId(req.params.idJuego)
+  .then(function (resultado){
+    const response = resultado.map( r =>{
+      return {
+        "nombre_juez"  : r.nombre_juez,
+        "jugabilidad"  : r.jugabilidad,
+        "arte"         : r.arte,
+        "sonido"       : r.sonido,
+        "afinidad"     : r.afinidad
+      }
+    })
+    res.status(200).json(response)
   })
   .catch( error => {
     res.status(500).send('error del sevidor')
@@ -22,6 +31,6 @@ function obtenerPorEdidicion(req, res) {
 }
 
 export default{
-  jucesQueVotaronA,
+  juegosPorId,
   obtenerPorEdidicion
 }

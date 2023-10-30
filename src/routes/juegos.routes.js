@@ -2,7 +2,7 @@ import express from 'express'
 import juegosControllers from '../controllers/juegos.controllers.js'
 const routeJuegos = express()
 
-routeJuegos.get('/:idJuego/jueces', juegosControllers.jucesQueVotaronA)
+routeJuegos.get('/:idJuego/info', juegosControllers.juegosPorId)
 
 routeJuegos.get('/:idEdicion/lista', juegosControllers.obtenerPorEdidicion)
 
