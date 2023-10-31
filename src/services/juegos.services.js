@@ -25,7 +25,7 @@ async function crearJuego(data) {
   return nuevoJuego
 }
 
-async function editarJuego(data) {
+async function editarJuego(id ,data) {
   await cliente.connect()
   return await juegosCollection.updateOne({_id: new ObjectId(id)}, {$set: {...data}})
 }
