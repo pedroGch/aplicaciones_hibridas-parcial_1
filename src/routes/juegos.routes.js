@@ -1,4 +1,5 @@
 import express from 'express'
+import  { validarCreacionDeJuego }  from '../middlewares/juego.middlewares.js'
 import juegosControllers from '../controllers/juegos.controllers.js'
 const routeJuegos = express()
 
@@ -8,7 +9,7 @@ routeJuegos.get('/:idJuego/promedio', juegosControllers.promedio)
 
 routeJuegos.get('/:idEdicion/lista', juegosControllers.obtenerPorEdidicion)
 
-routeJuegos.post('/crear', juegosControllers.crearJuego)
+routeJuegos.post('/crear',[validarCreacionDeJuego], juegosControllers.crearJuego)
 
 routeJuegos.put('/:id/editar', juegosControllers.editarJuego)
 
