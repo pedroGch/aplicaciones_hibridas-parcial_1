@@ -49,3 +49,19 @@ export async function juegoExiste(req, res, next) {
   }
   
 }
+
+export async function votoUnico(req, res, next) {
+  try {
+    const juegosVotados = await juecesControllers.juezVoto(req.body.juez_id)
+    const juegoExiste = juegosVotados.some( j => j.juego_id === req.body.juego_id )
+
+    if (!juegoExiste){
+      next()
+    }else{
+      res.status(400).send('el juego ya fue calificado por este juez')
+    }
+
+  } catch (error) {
+    res.status(500).send('HUBO UN ERROR EN EL SERVIDOR BUSCANDO EL JUEGO')
+  }
+}

@@ -44,8 +44,13 @@ async function juezExiste (id) {
   return  juez
 }
 
+async function juezVoto (id) {
+  return await juecesServices.juegosVotados(id)
+}
+
 export default{
   juegosVotados,
   emitirVoto,
-  juezExiste
+  juezExiste,
+  juezVoto
 }
