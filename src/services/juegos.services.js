@@ -6,6 +6,7 @@ const db = cliente.db("AH_PARCIAL1")
 const juegosCollection = db.collection("games")
 
 async function juegosPorId(id) {
+  await cliente.connect()
   return votosServices.juegosPorId(id)
   
 } 
@@ -35,11 +36,25 @@ async function borrarJuego(id) {
   return await juegosCollection.deleteOne({_id: new ObjectId(id)})
 }
 
+async function juegoExiste(id) {
+  await cliente.connect()
+  return  await juegosCollection.findOne({ _id: new ObjectId(id) })
+}
+
+export {
+  juegosPorId,
+  obtenerPorEdidicion,
+  crearJuego,
+  editarJuego,
+  borrarJuego,
+  juegoExiste
+}
 
 export default{
   juegosPorId,
   obtenerPorEdidicion,
   crearJuego,
   editarJuego,
-  borrarJuego
+  borrarJuego,
+  juegoExiste
 }

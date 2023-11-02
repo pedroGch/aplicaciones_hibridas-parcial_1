@@ -16,8 +16,13 @@ async function emitirVoto(data){
   return votosServices.almacenarVoto(data)
 }
 
+async function juezExiste(id) {
+  await cliente.connect()
+  return  await juecesCollection.findOne({ _id: new ObjectId(id) })
+}
 
 export default{
   juegosVotados,
-  emitirVoto
+  emitirVoto,
+  juezExiste
 }

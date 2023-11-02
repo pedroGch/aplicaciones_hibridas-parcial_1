@@ -90,11 +90,27 @@ function borrarJuego(req, res) {
   })
 }
 
+async function juegoExiste (id) {
+  const juego = await juegosServices.juegoExiste(id)
+  return  juego
+}
+
+export {
+  juegosPorId,
+  obtenerPorEdidicion,
+  promedio,
+  crearJuego,
+  editarJuego,
+  borrarJuego,
+  juegoExiste
+}
+
 export default{
   juegosPorId,
   obtenerPorEdidicion,
   promedio,
   crearJuego,
   editarJuego,
-  borrarJuego
+  borrarJuego,
+  juegoExiste
 }

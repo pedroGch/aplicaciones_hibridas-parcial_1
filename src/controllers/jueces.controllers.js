@@ -39,7 +39,13 @@ function emitirVoto(req, res) {
   })
 }
 
+async function juezExiste (id) {
+  const juez = await juecesServices.juezExiste(id)
+  return  juez
+}
+
 export default{
   juegosVotados,
-  emitirVoto
+  emitirVoto,
+  juezExiste
 }
