@@ -1,6 +1,6 @@
 import juegoSchema  from "../schemas/juegos.schemas.js";
 
-export function validarCreacionDeJuego(req, res, next) {
+export function validarJuegoCreacion (req, res, next) {
   juegoSchema.juegoCrearSchema.validate(req.body, {
     stripUnknown: true,
     abortEarly: false
@@ -15,6 +15,3 @@ export function validarCreacionDeJuego(req, res, next) {
     })
 
 }
-
-
-
