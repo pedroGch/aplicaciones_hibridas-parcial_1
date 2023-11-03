@@ -41,13 +41,18 @@ async function juegoExiste(id) {
   return  await juegosCollection.findOne({ _id: new ObjectId(id) })
 }
 
+async function juegosVotados(id) {
+  return await votosServices.juegosVotados(id)
+}
+
 export {
   juegosPorId,
   obtenerPorEdidicion,
   crearJuego,
   editarJuego,
   borrarJuego,
-  juegoExiste
+  juegoExiste,
+  juegosVotados
 }
 
 export default{
@@ -56,5 +61,6 @@ export default{
   crearJuego,
   editarJuego,
   borrarJuego,
-  juegoExiste
+  juegoExiste,
+  juegosVotados
 }

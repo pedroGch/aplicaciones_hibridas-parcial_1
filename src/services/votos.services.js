@@ -50,7 +50,7 @@ async function juegosPor(filtro = {}) {
 }
 
 /**
- * Obtiene mediante el id de un juez, los juegos que fueron que fueron votados 
+ * Obtiene mediante el id de un juez, los juegos que voto
  * @param {*} id 
  * @returns []
  */
@@ -61,7 +61,7 @@ async function juegosVotados(id) {
 }
 
 /**
- * Obtiene mediante el id de un juez, los juegos que fueron que fueron votados 
+ * Obtiene mediante el id de un juego, los juegos que fueron votados 
  * @param {*} id 
  * @returns []
  */

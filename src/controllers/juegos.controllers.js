@@ -23,19 +23,36 @@ async function juegosPorId(req, res) {
 async function promedio(req, res) {
   juegosServices.juegosPorId(req.params.idJuego)
   .then(function (resultado){
-    const response = resultado.map( r =>{
-      return {
-        "nombre_juez"  : r.nombre_juez,
-        "jugabilidad"  : r.jugabilidad,
-        "arte"         : r.arte,
-        "sonido"       : r.sonido,
-        "afinidad"     : r.afinidad
-      }
+    const promedios = {
+      "nombre_juego" : "",
+      "jugabilidad"  : 0,
+      "arte"         : 0,
+      "sonido"       : 0, 
+      "afinidad"     : 0
+    }
+
+    const cantidadElementos = resultado.length
+    
+    resultado.forEach(j => {
+      promedios.nombre_juego = j.nombre_juego
+      promedios.jugabilidad += j.jugabilidad
+      promedios.arte        += j.arte
+      promedios.sonido      += j.sonido
+      promedios.afinidad    += j.afinidad
     })
+
+    const response = {
+      "nombre_juego" : promedios.nombre_juego,
+      "jugabilidad"  : promedios.jugabilidad / cantidadElementos,
+      "arte"         : promedios.arte / cantidadElementos,
+      "sonido"       : promedios.sonido / cantidadElementos,
+      "afinidad"     : promedios.afinidad / cantidadElementos
+    }
+
     res.status(200).json(response)
   })
   .catch( error => {
-    res.status(500).send('error del sevidor')
+    res.status(500).json(error)
   })
 }
 
