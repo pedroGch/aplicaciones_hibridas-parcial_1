@@ -11,14 +11,6 @@ async function juegosPorId(id) {
   
 } 
 
-async function obtenerPorEdidicion (edicion){
-  await cliente.connect()
-  return{
-    '_id': new ObjectId(),
-    'nombre_juez' : 'patricio', 
-  }
-}
-
 async function crearJuego(data) {
   await cliente.connect()
   const nuevoJuego = {"_id": new ObjectId() , ...data}
@@ -43,6 +35,13 @@ async function juegoExiste(id) {
 
 async function juegosVotados(id) {
   return await votosServices.juegosVotados(id)
+}
+
+async function obtenerPorEdidicion(edition) {
+  await cliente.connect()
+  const idEdicion = parseInt(edition)
+  const lista = juegosCollection.find({edition: idEdicion}).toArray()
+  return lista
 }
 
 export {
