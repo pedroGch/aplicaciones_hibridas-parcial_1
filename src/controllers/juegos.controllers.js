@@ -59,6 +59,8 @@ async function promedio(req, res) {
 function obtenerPorEdidicion(req, res) {
   juegosServices.obtenerPorEdidicion(req.params.edicion)
   .then(function (listaPorEdicion) {
+
+    console.log(listaPorEdicion)
     res.status(200).json(listaPorEdicion)
   })
   .catch( error => {
