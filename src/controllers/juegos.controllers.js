@@ -56,8 +56,8 @@ async function promedio(req, res) {
   })
 }
 
-function obtenerPorEdidicion(req, res) {
-  juegosServices.obtenerPorEdidicion(req.params.edicion, {"genre": req.query.genre})
+function obtenerPorEdicion(req, res) {
+  juegosServices.obtenerPorEdicion(req.params.edicion, {"genre": req.query.genre})
   .then(function (listaPorEdicion) {
 
     console.log(listaPorEdicion)
@@ -122,7 +122,7 @@ async function buscarActualizarJuego(idjuego,total_score){
 
 export {
   juegosPorId,
-  obtenerPorEdidicion,
+  obtenerPorEdicion,
   promedio,
   crearJuego,
   editarJuego,
@@ -133,7 +133,7 @@ export {
 
 export default{
   juegosPorId,
-  obtenerPorEdidicion,
+  obtenerPorEdicion,
   promedio,
   crearJuego,
   editarJuego,

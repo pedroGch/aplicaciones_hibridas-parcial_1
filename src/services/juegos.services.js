@@ -39,7 +39,7 @@ async function juegosVotados(id) {
   return await votosServices.juegosVotados(id)
 }
 
-async function obtenerPorEdidicion(edition, filter = {}) {
+async function obtenerPorEdicion(edition, filter = {}) {
   const filterMongo = {"edition":  parseInt(edition)} 
 
   if (filter?.genre) {
@@ -52,7 +52,7 @@ async function obtenerPorEdidicion(edition, filter = {}) {
 
 export {
   juegosPorId,
-  obtenerPorEdidicion,
+  obtenerPorEdicion,
   crearJuego,
   editarJuego,
   borrarJuego,
