@@ -40,8 +40,8 @@ async function juegosVotados(id) {
 }
 
 async function obtenerPorEdidicion(edition, filter = {}) {
-  const filterMongo = {"edition": edition} 
-  filterMongo.edition = parseInt(edition)
+  const filterMongo = {"edition":  parseInt(edition)} 
+
   if (filter?.genre) {
     filterMongo.genre = filter.genre 
   }
