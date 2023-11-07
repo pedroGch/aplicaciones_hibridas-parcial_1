@@ -40,7 +40,7 @@ async function juegosVotados(id) {
 async function obtenerPorEdidicion(edition) {
   await cliente.connect()
   const idEdicion = parseInt(edition)
-  const lista = juegosCollection.find({edition: idEdicion}).toArray()
+  const lista = juegosCollection.find({edition: idEdicion}).sort({"total_score": -1}).toArray()
   return lista
 }
 
