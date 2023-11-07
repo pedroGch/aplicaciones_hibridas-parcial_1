@@ -5,6 +5,8 @@ const cliente = new MongoClient('mongodb://127.0.0.1:27017')
 const db = cliente.db("AH_PARCIAL1")
 const juegosCollection = db.collection("games")
 
+
+
 async function juegosPorId(id) {
   await cliente.connect()
   return votosServices.juegosPorId(id)
@@ -37,10 +39,14 @@ async function juegosVotados(id) {
   return await votosServices.juegosVotados(id)
 }
 
-async function obtenerPorEdidicion(edition) {
+async function obtenerPorEdidicion(edition, filter = {}) {
+  const filterMongo = {"edition": edition} 
+  filterMongo.edition = parseInt(edition)
+  if (filter?.genre) {
+    filterMongo.genre = filter.genre 
+  }
   await cliente.connect()
-  const idEdicion = parseInt(edition)
-  const lista = juegosCollection.find({edition: idEdicion}).sort({"total_score": -1}).toArray()
+  const lista = juegosCollection.find(filterMongo).sort({"total_score": -1}).toArray()
   return lista
 }
 

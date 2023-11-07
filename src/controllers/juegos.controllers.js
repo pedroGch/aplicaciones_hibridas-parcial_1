@@ -57,7 +57,7 @@ async function promedio(req, res) {
 }
 
 function obtenerPorEdidicion(req, res) {
-  juegosServices.obtenerPorEdidicion(req.params.edicion)
+  juegosServices.obtenerPorEdidicion(req.params.edicion, {"genre": req.query.genre})
   .then(function (listaPorEdicion) {
 
     console.log(listaPorEdicion)
