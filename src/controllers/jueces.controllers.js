@@ -1,4 +1,5 @@
 import juecesServices from "../services/jueces.services.js"
+import juegosController from "./juegos.controllers.js"
 
 async function juegosVotados(req, res) {
   juecesServices.juegosVotados(req.params.id)
@@ -19,6 +20,10 @@ async function juegosVotados(req, res) {
   })
 }
 
+async function buscarActualizarJuego(idjuego,total_score) {
+  juegosController.buscarActualizarJuego(idjuego,total_score)
+}
+
 function emitirVoto(req, res) {
   const data = {
     "juez_id"     : req.body.juez_id,
@@ -32,6 +37,10 @@ function emitirVoto(req, res) {
   }
   juecesServices.emitirVoto(data)
   .then(function (votoEmitido) {
+    //sumo todos los scores
+    const total_score = req.body.jugabilidad + req.body.arte + req.body.sonido + req.body.afinidad
+    const idjuego     = req.body.juego_id
+    buscarActualizarJuego(idjuego,total_score)
     res.status(200).json(votoEmitido)
   })
   .catch( error => {
