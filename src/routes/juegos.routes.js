@@ -7,7 +7,7 @@ routeJuegos.get('/:idJuego/info', juegosControllers.juegosPorId)
 
 routeJuegos.get('/:idJuego/promedio', juegosControllers.promedio)
 
-routeJuegos.get('/:edicion/edicion', juegosControllers.obtenerPorEdidicion)
+routeJuegos.get('/:edicion/edicion', juegosControllers.obtenerPorEdicion)
 
 routeJuegos.post('/crear',[validarJuegoCreacion], juegosControllers.crearJuego)
 

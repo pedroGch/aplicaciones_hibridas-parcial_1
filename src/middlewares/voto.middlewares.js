@@ -13,7 +13,7 @@ export function validarVotoCreacion (req, res, next) {
       next()
     })
     .catch(function (err) {
-      res.status(400).json(err.errors)
+      res.status(401).json(err.errors)
     })
 
 }
@@ -25,7 +25,7 @@ export async function juezExiste(req, res, next) {
     if (juez){
       next()
     }else{
-      res.status(400).send('el juez no existe, no puede votar')
+      res.status(401).send('el juez no existe, no puede votar')
     } 
 
   } catch (error) {
@@ -41,7 +41,7 @@ export async function juegoExiste(req, res, next) {
     if (juego){
       next()
     }else{
-      res.status(400).send('el juego no existe, no se puede calificar')
+      res.status(401).send('el juego no existe, no se puede calificar')
     } 
 
   } catch (error) {
@@ -58,7 +58,7 @@ export async function votoUnico(req, res, next) {
     if (!juegoExiste){
       next()
     }else{
-      res.status(400).send('el juego ya fue calificado por este juez')
+      res.status(401).send('el juego ya fue calificado por este juez')
     }
 
   } catch (error) {

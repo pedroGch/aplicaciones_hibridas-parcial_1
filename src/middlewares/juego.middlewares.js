@@ -11,7 +11,7 @@ export function validarJuegoCreacion (req, res, next) {
       next()
     })
     .catch(function (err) {
-      res.status(400).json(err)
+      res.status(401).json(err)
     })
 
 }

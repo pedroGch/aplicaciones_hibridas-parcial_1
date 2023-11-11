@@ -62,7 +62,7 @@ export {
 
 export default{
   juegosPorId,
-  obtenerPorEdidicion,
+  obtenerPorEdicion,
   crearJuego,
   editarJuego,
   borrarJuego,
