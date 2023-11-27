@@ -114,11 +114,7 @@ async function juegoExiste (id) {
   return  juego
 }
 
-async function buscarActualizarJuego(idjuego,total_score){
-  let juego         = await juegosServices.juegoExiste(idjuego)
-  juego.total_score = juego.total_score + total_score
-  juegosServices.editarJuego(idjuego, juego)
-}
+
 
 export {
   juegosPorId,
@@ -128,7 +124,7 @@ export {
   editarJuego,
   borrarJuego,
   juegoExiste,
-  buscarActualizarJuego
+  
 }
 
 export default{
@@ -139,5 +135,5 @@ export default{
   editarJuego,
   borrarJuego,
   juegoExiste,
-  buscarActualizarJuego
+  
 }
