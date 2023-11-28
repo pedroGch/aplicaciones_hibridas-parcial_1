@@ -50,6 +50,12 @@ async function obtenerPorEdicion(edition, filter = {}) {
   return lista
 }
 
+async function actualizarScore (idjuego,total_score){
+  let juego         = await juegosServices.juegoExiste(idjuego)
+  juego.total_score = juego.total_score + total_score
+  juegosServices.editarJuego(idjuego, juego)
+}
+
 export {
   juegosPorId,
   obtenerPorEdicion,
@@ -57,7 +63,8 @@ export {
   editarJuego,
   borrarJuego,
   juegoExiste,
-  juegosVotados
+  juegosVotados,
+  actualizarScore
 }
 
 export default{
@@ -67,5 +74,6 @@ export default{
   editarJuego,
   borrarJuego,
   juegoExiste,
-  juegosVotados
+  juegosVotados,
+  actualizarScore
 }

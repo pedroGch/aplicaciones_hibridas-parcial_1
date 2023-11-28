@@ -1,5 +1,5 @@
 import juecesServices from "../services/jueces.services.js"
-import juegosController from "./juegos.controllers.js"
+import juegosServices from "../services/juegos.services.js"
 
 async function juegosVotados(req, res) {
   juecesServices.juegosVotados(req.params.id)
@@ -21,7 +21,8 @@ async function juegosVotados(req, res) {
 }
 
 async function buscarActualizarJuego(idjuego,total_score) {
-  juegosController.buscarActualizarJuego(idjuego,total_score)
+  juegosServices.actualizarScore(idjuego,total_score)
+  
 }
 
 function emitirVoto(req, res) {
