@@ -13,7 +13,7 @@ routeJuegos.get('/:idJuego', juegosControllers.juegosPorId)
 
 routeJuegos.get('/:idJuego/promedio', juegosControllers.promedio)
 
-routeJuegos.get('/:edicion/edicion', juegosControllers.obtenerPorEdicion)
+routeJuegos.get('/edicion/:edicion', juegosControllers.obtenerPorEdicion)
 
 
 export default routeJuegos

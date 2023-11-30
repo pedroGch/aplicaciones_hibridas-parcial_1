@@ -20,20 +20,25 @@ async function juegosVotados(req, res) {
   })
 }
 
-function emitirVoto(req, res) {
+async function emitirVoto(req, res) {
   const data = {
-    "juez_id"     : req.body.juez_id,
     "juego_id"    : req.body.juego_id,
+    "juez_id"     : req.body.juez_id,
     "jugabilidad" : req.body.jugabilidad,
     "arte"        : req.body.arte,
     "sonido"      : req.body.sonido,
     "afinidad"    : req.body.afinidad
   }
-  juecesServices.emitirVoto(data)
+  const juez  = await juecesServices.juezExiste(req.body.juez_id)
+  const juego = await juegosServices.juegoExiste(req.body.juego_id)
+  
+  const voto = {...data, nombre_juez: juez.name, nombre_juego: juego.name, genre: juego.genre}
+  juecesServices.emitirVoto(voto)
   .then(function (votoEmitido) {
     //sumo todos los scores
     const total_score = req.body.jugabilidad + req.body.arte + req.body.sonido + req.body.afinidad
     const idjuego     = req.body.juego_id
+    //actualizo el total_score de cada game
     juegosServices.actualizarScore(idjuego, total_score)
     res.status(200).json(votoEmitido)
   })
@@ -42,18 +47,7 @@ function emitirVoto(req, res) {
   })
 }
 
-async function juezExiste (id) {
-  const juez = await juecesServices.juezExiste(id)
-  return  juez
-}
-
-async function juezVoto (id) {
-  return await juecesServices.juegosVotados(id)
-}
-
 export default{
   juegosVotados,
-  emitirVoto,
-  juezExiste,
-  juezVoto
+  emitirVoto
 }

@@ -70,10 +70,11 @@ function obtenerPorEdicion(req, res) {
 
 function crearJuego(req, res) {
   const data = {
-    "name"    : req.body.name,
-    "genre"   : req.body.genre,
-    "members" : req.body.members,
-    "edition" : req.body.edition
+    "name"        : req.body.name,
+    "genre"       : req.body.genre,
+    "members"     : req.body.members,
+    "edition"     : req.body.edition,
+    "total_score" : 0
   }
 
   juegosServices.crearJuego(data)
@@ -109,13 +110,6 @@ function borrarJuego(req, res) {
   })
 }
 
-async function juegoExiste (id) {
-  const juego = await juegosServices.juegoExiste(id)
-  return  juego
-}
-
-
-
 export {
   juegosPorId,
   obtenerPorEdicion,
@@ -123,8 +117,6 @@ export {
   crearJuego,
   editarJuego,
   borrarJuego,
-  juegoExiste,
-  
 }
 
 export default{
@@ -134,6 +126,4 @@ export default{
   crearJuego,
   editarJuego,
   borrarJuego,
-  juegoExiste,
-  
 }
