@@ -20,17 +20,10 @@ async function juegosVotados(req, res) {
   })
 }
 
-async function buscarActualizarJuego(idjuego,total_score) {
-  juegosServices.actualizarScore(idjuego,total_score)
-  
-}
-
 function emitirVoto(req, res) {
   const data = {
     "juez_id"     : req.body.juez_id,
-    "nombre_juez" : req.body.nombre_juez,
     "juego_id"    : req.body.juego_id,
-    "nombre_juego": req.body.nombre_juego,
     "jugabilidad" : req.body.jugabilidad,
     "arte"        : req.body.arte,
     "sonido"      : req.body.sonido,
@@ -41,7 +34,7 @@ function emitirVoto(req, res) {
     //sumo todos los scores
     const total_score = req.body.jugabilidad + req.body.arte + req.body.sonido + req.body.afinidad
     const idjuego     = req.body.juego_id
-    buscarActualizarJuego(idjuego,total_score)
+    juegosServices.actualizarScore(idjuego, total_score)
     res.status(200).json(votoEmitido)
   })
   .catch( error => {
