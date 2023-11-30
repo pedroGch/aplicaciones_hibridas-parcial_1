@@ -5,6 +5,7 @@ const routeJueces = express()
 
 routeJueces.get('/:id/votosEmitidos', juecesControllers.juegosVotados)
 
-routeJueces.post('/votar', [validarVotoCreacion], [juezExiste], [juegoExiste], [votoUnico], juecesControllers.emitirVoto)
+//routeJueces.post('/votar', [validarVotoCreacion], [juezExiste], [juegoExiste], [votoUnico], juecesControllers.emitirVoto)
+routeJueces.post('/votar', juecesControllers.emitirVoto)
 
 export default routeJueces
